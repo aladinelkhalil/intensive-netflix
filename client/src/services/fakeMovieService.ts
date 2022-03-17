@@ -96,3 +96,7 @@ const movies: Movie[] = [
 export function getMovies() {
   return movies;
 }
+
+export function getMovie(id: string) {
+  return movies.find((m) => m._id === id);
+}
