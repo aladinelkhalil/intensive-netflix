@@ -5,7 +5,11 @@ import { Movie } from "types";
 import { getMovies } from "services/fakeMovieService";
 import { useQuery } from "hooks/useQuery";
 
-function MovieList() {
+interface Props {
+  searchQuery: string;
+}
+
+function MovieList({ searchQuery }: Props) {
   const [movies, setMovies] = useState<Movie[]>([]);
   const { category: selectedCategory } = useQuery();
   const history = useHistory();
@@ -15,9 +19,15 @@ function MovieList() {
     setMovies(movies);
   }, []);
 
-  const filteredMovies = selectedCategory
+  let filteredMovies = selectedCategory
     ? movies.filter((m) => m.category === selectedCategory)
     : movies;
+
+  filteredMovies = searchQuery
+    ? filteredMovies.filter((m) =>
+        m.title.toLowerCase().includes(searchQuery.toLowerCase())
+      )
+    : filteredMovies;
 
   return (
     <Container>
@@ -38,13 +48,14 @@ const Container = styled.div`
   display: grid;
   grid-template-columns: repeat(6, 1fr);
   column-gap: 4px;
+  row-gap: 64px;
   margin: 16px;
 `;
 
 const Poster = styled.img`
   width: 200px;
   height: 150px;
-  border-radius: 4px;
+  border-radius: 2px;
   transition: all 0.3s ease-in-out;
   cursor: pointer;
 
