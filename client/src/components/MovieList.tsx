@@ -14,7 +14,7 @@ function MovieList() {
   return (
     <Container>
       {movies.map((movie) => (
-        <Poster src={movie.poster} />
+        <Poster key={movie._id} src={movie.poster} />
       ))}
     </Container>
   );
@@ -30,7 +30,13 @@ const Container = styled.div`
 `;
 
 const Poster = styled.img`
-  width: 300px;
+  width: 200px;
   height: 150px;
   border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+
+  &:hover {
+    transform: scale(1.05);
+  }
 `;
