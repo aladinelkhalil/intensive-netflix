@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import { useEffect, useState } from "react";
 import { useHistory, useParams } from "react-router-dom";
-import { getMovie } from "services/fakeMovieService";
+import { getMovie } from "services/movieService";
 import { Movie } from "types";
 
 interface RouteParams {
@@ -13,12 +13,15 @@ function MovieDetails() {
   const { id: movieId } = useParams<RouteParams>();
   const history = useHistory();
 
+  async function loadMovie() {
+    const { data: movie } = await getMovie(movieId);
+    setMovie(movie);
+  }
+
   useEffect(() => {
-    const movie = getMovie(movieId);
+    const movie = loadMovie();
 
     if (!movie) return history.push("/not-found");
-
-    setMovie(movie);
   }, []);
 
   return (
@@ -28,7 +31,7 @@ function MovieDetails() {
         <Title>{movie?.title}</Title>
         <Description>{movie?.description}</Description>
         {movie?.genres.map((genre) => (
-          <Genre>{genre.name}</Genre>
+          <Genre>{genre}</Genre>
         ))}
       </Info>
     </Container>

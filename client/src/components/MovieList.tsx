@@ -2,7 +2,7 @@ import styled from "styled-components";
 import { useState, useEffect } from "react";
 import { useHistory } from "react-router-dom";
 import { Movie } from "types";
-import { getMovies } from "services/fakeMovieService";
+import { getMovies } from "services/movieService";
 import { useQuery } from "hooks/useQuery";
 
 interface Props {
@@ -14,9 +14,13 @@ function MovieList({ searchQuery }: Props) {
   const { category: selectedCategory } = useQuery();
   const history = useHistory();
 
-  useEffect(() => {
-    const movies = getMovies();
+  async function loadMovies() {
+    const { data: movies } = await getMovies();
     setMovies(movies);
+  }
+
+  useEffect(() => {
+    loadMovies();
   }, []);
 
   let filteredMovies = selectedCategory
