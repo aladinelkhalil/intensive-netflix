@@ -1,11 +1,13 @@
 import styled from "styled-components";
 import { useState, useEffect } from "react";
-import { getMovies } from "services/fakeMovieService";
-import { Movie } from "types";
 import { useHistory } from "react-router-dom";
+import { Movie } from "types";
+import { getMovies } from "services/fakeMovieService";
+import { useQuery } from "hooks/useQuery";
 
 function MovieList() {
   const [movies, setMovies] = useState<Movie[]>([]);
+  const { category: selectedCategory } = useQuery();
   const history = useHistory();
 
   useEffect(() => {
@@ -13,9 +15,13 @@ function MovieList() {
     setMovies(movies);
   }, []);
 
+  const filteredMovies = selectedCategory
+    ? movies.filter((m) => m.category === selectedCategory)
+    : movies;
+
   return (
     <Container>
-      {movies.map((movie) => (
+      {filteredMovies.map((movie) => (
         <Poster
           key={movie._id}
           src={movie.poster}
