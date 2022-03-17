@@ -13,16 +13,16 @@ function MovieDetails() {
   const { id: movieId } = useParams<RouteParams>();
   const history = useHistory();
 
-  async function loadMovie() {
-    const { data: movie } = await getMovie(movieId);
-    setMovie(movie);
-  }
-
   useEffect(() => {
+    async function loadMovie() {
+      const { data: movie } = await getMovie(movieId);
+      setMovie(movie);
+    }
+
     const movie = loadMovie();
 
     if (!movie) return history.push("/not-found");
-  }, []);
+  }, [history, movieId]);
 
   return (
     <Container>
@@ -30,8 +30,8 @@ function MovieDetails() {
       <Info>
         <Title>{movie?.title}</Title>
         <Description>{movie?.description}</Description>
-        {movie?.genres.map((genre) => (
-          <Genre>{genre}</Genre>
+        {movie?.genres.map((genre, i) => (
+          <Genre key={i}>{genre}</Genre>
         ))}
       </Info>
     </Container>
