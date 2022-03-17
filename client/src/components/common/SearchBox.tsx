@@ -42,6 +42,12 @@ const Container = styled.div`
     right: 16px;
     cursor: pointer;
   }
+
+  @media (max-width: 500px) {
+    grid-column: 1 / span 2;
+    grid-row: 2;
+    justify-self: center;
+  }
 `;
 
 const SearchInput = styled.input`

@@ -14,12 +14,12 @@ function MovieList({ searchQuery }: Props) {
   const { category: selectedCategory } = useQuery();
   const history = useHistory();
 
-  async function loadMovies() {
-    const { data: movies } = await getMovies();
-    setMovies(movies);
-  }
-
   useEffect(() => {
+    async function loadMovies() {
+      const { data: movies } = await getMovies();
+      setMovies(movies);
+    }
+
     loadMovies();
   }, []);
 
@@ -54,6 +54,11 @@ const Container = styled.div`
   column-gap: 4px;
   row-gap: 64px;
   margin: 16px;
+
+  @media (max-width: 500px) {
+    grid-template-columns: repeat(2, 1fr);
+    row-gap: 24px;
+  }
 `;
 
 const Poster = styled.img`

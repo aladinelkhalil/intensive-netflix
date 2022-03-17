@@ -30,9 +30,11 @@ function MovieDetails() {
       <Info>
         <Title>{movie?.title}</Title>
         <Description>{movie?.description}</Description>
-        {movie?.genres.map((genre, i) => (
-          <Genre key={i}>{genre}</Genre>
-        ))}
+        <Genres>
+          {movie?.genres.map((genre, i) => (
+            <Genre key={i}>{genre}</Genre>
+          ))}
+        </Genres>
       </Info>
     </Container>
   );
@@ -45,21 +47,43 @@ const Container = styled.div`
   grid-template-columns: 1fr 3fr;
   column-gap: 24px;
   margin: 0 24px;
+
+  @media (max-width: 500px) {
+    grid-template-columns: 1fr;
+  }
 `;
 
 const Info = styled.div``;
 
 const Poster = styled.img`
   height: 480px;
+  width: 100%;
 `;
 
 const Title = styled.h1`
   margin-bottom: 24px;
+
+  @media (max-width: 500px) {
+    margin-top: 24px;
+    text-align: center;
+  }
 `;
 
 const Description = styled.p`
   width: 75%;
   margin-bottom: 24px;
+
+  @media (max-width: 500px) {
+    width: 100%;
+    text-align: center;
+  }
+`;
+
+const Genres = styled.div`
+  @media (max-width: 500px) {
+    text-align: center;
+    margin-bottom: 24px;
+  }
 `;
 
 const Genre = styled.span`

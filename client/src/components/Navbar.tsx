@@ -28,12 +28,23 @@ const Container = styled.div`
   grid-template-columns: 1fr 1fr 3fr 2fr;
   align-items: center;
   height: 80px;
+
+  @media (max-width: 500px) {
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: 80px 40px;
+    margin-bottom: 64px;
+  }
 `;
 
 const Logo = styled.img`
   width: 200px;
   height: 40px;
   margin: 16px 8px;
+
+  @media (max-width: 500px) {
+    grid-column: 1;
+    grid-row: 1;
+  }
 `;
 
 const Nav = styled.nav`
@@ -51,5 +62,13 @@ const Nav = styled.nav`
     &:hover {
       transform: scale(1.1);
     }
+  }
+
+  @media (max-width: 500px) {
+    margin-left: 16px;
+    margin-right: 16px;
+    column-gap: 4px;
+    grid-column: 2;
+    grid-row: 1;
   }
 `;
