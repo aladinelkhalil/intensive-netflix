@@ -1,7 +1,7 @@
+import styled from "styled-components";
 import { useEffect, useState } from "react";
 import { useHistory, useParams } from "react-router-dom";
 import { getMovie } from "services/fakeMovieService";
-import styled from "styled-components";
 import { Movie } from "types";
 
 interface RouteParams {
@@ -23,14 +23,14 @@ function MovieDetails() {
 
   return (
     <Container>
-      <img src={movie?.poster} height="480" />
-      <div>
-        <h1>{movie?.title}</h1>
-        <p>{movie?.description}</p>
+      <Poster src={movie?.poster} />
+      <Info>
+        <Title>{movie?.title}</Title>
+        <Description>{movie?.description}</Description>
         {movie?.genres.map((genre) => (
           <Genre>{genre.name}</Genre>
         ))}
-      </div>
+      </Info>
     </Container>
   );
 }
@@ -42,15 +42,21 @@ const Container = styled.div`
   grid-template-columns: 1fr 3fr;
   column-gap: 24px;
   margin: 0 24px;
+`;
 
-  & h1 {
-    margin-bottom: 24px;
-  }
+const Info = styled.div``;
 
-  & p {
-    width: 75%;
-    margin-bottom: 24px;
-  }
+const Poster = styled.img`
+  height: 480px;
+`;
+
+const Title = styled.h1`
+  margin-bottom: 24px;
+`;
+
+const Description = styled.p`
+  width: 75%;
+  margin-bottom: 24px;
 `;
 
 const Genre = styled.span`
