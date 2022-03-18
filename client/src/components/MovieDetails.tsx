@@ -19,7 +19,7 @@ function MovieDetails() {
       setMovie(movie);
     }
 
-    const movie = loadMovie();
+    loadMovie();
 
     if (!movie) return history.push("/not-found");
   }, [history, movieId]);
