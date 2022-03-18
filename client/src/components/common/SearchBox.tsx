@@ -14,11 +14,13 @@ function SearchBox({ value, onChange }: Props) {
         onChange={(e) => onChange(e.target.value)}
         placeholder="Search Netflix"
       />
-      <i
-        id="clear"
-        className="fa-solid fa-xmark"
-        onClick={() => onChange("")}
-      />
+      {value && (
+        <i
+          id="clear"
+          className="fa-solid fa-xmark"
+          onClick={() => onChange("")}
+        />
+      )}
     </Container>
   );
 }
