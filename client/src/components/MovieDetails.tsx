@@ -15,13 +15,15 @@ function MovieDetails() {
 
   useEffect(() => {
     async function loadMovie() {
-      const { data: movie } = await getMovie(movieId);
-      setMovie(movie);
+      try {
+        const { data: movie } = await getMovie(movieId);
+        setMovie(movie);
+      } catch (error) {
+        return history.push("/not-found");
+      }
     }
 
     loadMovie();
-
-    if (!movie) return history.push("/not-found");
   }, [history, movieId]);
 
   return (

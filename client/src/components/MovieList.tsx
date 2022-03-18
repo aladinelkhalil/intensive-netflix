@@ -1,9 +1,10 @@
 import styled from "styled-components";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import { useHistory } from "react-router-dom";
 import { Movie } from "types";
 import { getMovies } from "services/movieService";
 import { useQuery } from "hooks/useQuery";
+import AdminContext from "contexts/AdminContext";
 
 interface Props {
   searchQuery: string;
@@ -12,6 +13,7 @@ interface Props {
 function MovieList({ searchQuery }: Props) {
   const [movies, setMovies] = useState<Movie[]>([]);
   const { category: selectedCategory } = useQuery();
+  const { isAdmin } = useContext(AdminContext);
   const history = useHistory();
 
   useEffect(() => {
@@ -35,6 +37,18 @@ function MovieList({ searchQuery }: Props) {
 
   return (
     <Container>
+      {isAdmin && (
+        <>
+          <AddNewMovie as="div" onClick={() => history.push("/new-movie")}>
+            <i className="fa-solid fa-plus" />
+            <p>New Movie</p>
+          </AddNewMovie>
+          <AddNewMovie as="div" onClick={() => history.push("/new-series")}>
+            <i className="fa-solid fa-plus" />
+            <p>New Series</p>
+          </AddNewMovie>
+        </>
+      )}
       {filteredMovies.map((movie) => (
         <Poster
           key={movie._id}
@@ -70,5 +84,15 @@ const Poster = styled.img`
 
   &:hover {
     transform: scale(1.05);
+  }
+`;
+
+const AddNewMovie = styled(Poster)`
+  display: grid;
+  place-items: center;
+  border: 1px solid rgb(218, 218, 218);
+
+  & i {
+    font-size: 40px;
   }
 `;

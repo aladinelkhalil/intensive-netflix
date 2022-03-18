@@ -11,3 +11,7 @@ export function getMovies() {
 export function getMovie(id: string) {
   return axios.get<Movie>(`${apiEndpoint}/${id}`);
 }
+
+export function createMovie(movie: Movie) {
+  return axios.post<Movie>(apiEndpoint, movie);
+}

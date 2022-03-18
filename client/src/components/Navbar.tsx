@@ -15,8 +15,8 @@ function Navbar({ searchQuery, onSearch }: Props) {
       </Link>
       <Nav>
         <Link to="/">Home</Link>
-        <Link to="?category=series">Series</Link>
-        <Link to="?category=movie">Movies</Link>
+        <Link to="/?category=series">Series</Link>
+        <Link to="/?category=movie">Movies</Link>
       </Nav>
       <SearchBox value={searchQuery} onChange={onSearch} />
     </Container>

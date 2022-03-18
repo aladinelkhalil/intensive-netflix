@@ -8,7 +8,8 @@ interface FormData {
   password: string;
 }
 
-const secretPassword = "?x599nYwZpy4yeq2lgg3_j^nb";
+// const secretPassword = "?x599nYwZpy4yeq2lgg3_j^nb";
+const secretPassword = "123";
 
 function AdminLogin() {
   const { register, handleSubmit, resetField } = useForm<FormData>();
