@@ -64,26 +64,32 @@ export default MovieList;
 
 const Container = styled.div`
   display: grid;
-  grid-template-columns: repeat(6, 1fr);
-  column-gap: 4px;
-  row-gap: 64px;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 64px 4px;
   margin: 16px;
 
   @media (max-width: 500px) {
     grid-template-columns: repeat(2, 1fr);
-    row-gap: 24px;
+    place-items: center;
+    gap: 24px 0;
+    margin: 0;
   }
 `;
 
 const Poster = styled.img`
-  width: 200px;
+  width: 100%;
   height: 150px;
   border-radius: 2px;
   transition: all 0.3s ease-in-out;
+  object-fit: fill;
   cursor: pointer;
 
   &:hover {
-    transform: scale(1.05);
+    transform: scale(1.1);
+  }
+
+  @media (max-width: 500px) {
+    width: 150px;
   }
 `;
 

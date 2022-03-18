@@ -41,7 +41,7 @@ const Container = styled.div`
   & i#clear {
     position: absolute;
     top: 8px;
-    right: 16px;
+    right: 8px;
     cursor: pointer;
   }
 
@@ -53,6 +53,7 @@ const Container = styled.div`
 `;
 
 const SearchInput = styled.input`
+  width: 168px;
   height: 32px;
   outline: none;
   background-color: transparent;
