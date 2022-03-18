@@ -1,7 +1,11 @@
 import axios from "axios";
 import { Movie } from "types";
 
-const baseUrl = "http://localhost:8000";
+const baseUrl =
+  process.env.NODE_ENV === "production"
+    ? "https://intensive-netflix.herokuapp.com/"
+    : "http://localhost:8000";
+
 const apiEndpoint = `${baseUrl}/api/movies`;
 
 export function getMovies() {
