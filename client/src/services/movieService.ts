@@ -3,7 +3,7 @@ import { Movie } from "types";
 
 const baseUrl =
   process.env.NODE_ENV === "production"
-    ? "https://intensive-netflix.herokuapp.com/"
+    ? "https://intensive-netflix.herokuapp.com"
     : "http://localhost:8000";
 
 const apiEndpoint = `${baseUrl}/api/movies`;
