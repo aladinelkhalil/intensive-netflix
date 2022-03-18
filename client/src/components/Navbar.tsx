@@ -10,7 +10,9 @@ interface Props {
 function Navbar({ searchQuery, onSearch }: Props) {
   return (
     <Container>
-      <Logo src="netflix_logo.png" />
+      <Link to="/">
+        <Logo src="netflix_logo.png" />
+      </Link>
       <Nav>
         <Link to="/">Home</Link>
         <Link to="?category=series">Series</Link>
