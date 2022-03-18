@@ -1,5 +1,6 @@
 import express, { Request, Response } from "express";
 import { Movie, validate } from "models/Movie";
+import mongoose from "mongoose";
 
 const router = express.Router();
 
@@ -9,6 +10,9 @@ router.get("/", async (req: Request, res: Response) => {
 });
 
 router.get("/:id", async (req: Request, res: Response) => {
+  if (!mongoose.Types.ObjectId.isValid(req.params.id))
+    return res.status(400).send("Invalid id");
+
   const movie = await Movie.findById(req.params.id);
 
   if (!movie)
