@@ -19,6 +19,7 @@ function Navbar({ searchQuery, onSearch }: Props) {
         <Link to="/?category=movie">Movies</Link>
       </Nav>
       <SearchBox value={searchQuery} onChange={onSearch} />
+      <AdminLink to="/admin">Admin login</AdminLink>
     </Container>
   );
 }
@@ -27,7 +28,7 @@ export default Navbar;
 
 const Container = styled.div`
   display: grid;
-  grid-template-columns: 1fr 1fr 3fr 2fr;
+  grid-template-columns: 1fr 1fr 3fr 2fr 1fr;
   align-items: center;
   height: 80px;
 
@@ -35,6 +36,12 @@ const Container = styled.div`
     grid-template-columns: repeat(2, 1fr);
     grid-template-rows: 80px 40px;
     margin-bottom: 64px;
+  }
+`;
+
+const AdminLink = styled(Link)`
+  @media (max-width: 500px) {
+    display: none;
   }
 `;
 
